@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>    
+    <title>Biss teste</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+
+    <div id="app">
+        <a href="https://radiobiss.com.br"
+            target="_blank"
+            v-on:click.prevent="prevenirComportamentoPadrao()">
+            Rádio Biss
+        </a><br>
+        Mensagem: {{msg}}
+        <hr></hr>
+        <button @click.once="executarUmaVez">OK</button>
+        <p>Cliques: {{cliques}}</p>
+        <hr></hr>
+        <form @submit.prevent.once="previnirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <p>form: {{form}}</p>
+        <hr></hr>
+        <input type="text" @keyup.x="captTeclas($event)"></input>
+        <p>Teclas:{{teclas}}</p>
+    </div>
+    <script>
+
+        options={
+            el:'#app',
+            data:{
+              msg:"",
+              cliques:0,
+              form:'',
+              teclas:''
+            },
+            methods: {
+                prevenirComportamentoPadrao(){                    
+                    this.msg = "Esqueci q tinha q colocar a mensagem"  ;  
+                },
+                executarUmaVez(){                    
+                    this.cliques ++
+                },
+                previnirUmaVez(){
+                    this.form='Prevenindo o comp padrão';
+                },
+                captTeclas(e){
+                    this.teclas += e.key
+                }
+            },        
+        }
+
+       new Vue(options);
+       
+    </script> 
+</body>
+</html>

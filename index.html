@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>    
+    <title>Biss teste</title>
+</head>
+<body>
+    
+
+    <div id="app">
+      
+        <h2>{{titulo}}</h2>
+        <br>
+        <hr> </hr>
+        {{mensagem}}<br>        
+        {{dataHora}}<br>
+        logado: {{logado}}<br>
+        Cor:{{cores[0]}}<br>
+        Perfil:{{perfil.nome}}<br>
+
+        Salario Total: {{salarioTotal()}}<br>
+        outrafunc Total: {{outrafunc()}}<br>
+        arrow Total: {{arrow()}}<br>
+        soEu: {{soEu()}}<br>
+        arrowSalario: {{arrowSalario()}}<br>
+    </div>
+    <script>
+
+        options={
+            el:'#app',
+            data:{
+                titulo: 'Primeiro programa',
+                mensagem:'Primeiro template Vue',
+                dataHora: '13:57',
+                salario: 20030,
+                valotExtras: 2332,
+                cores:[
+                    'azul',
+                    'verde',
+                    'vermelho'
+                ],
+                logado:true,
+                perfil:{
+                    nome:'biss lee',
+                    datanasc: '196906-23',
+                    expertise:[
+                        'C#',
+                        'SQL',
+                        'SOA',
+                        'Rest'
+                    ]
+                }
+            },
+            methods: {
+                
+                salarioTotal: function calcularSalario(){                   
+                    return this.salario+this.valotExtras
+                },
+                outrafunc: function(){
+                    return 'sei la'
+                },
+                arrow: ()=>{
+                    return 'sei la =>'
+                },
+                soEu(){
+                    return "so eu"
+                },
+                arrowSalario: ()=>{
+                    return this.salario+this.valotExtras
+                },
+
+            },        
+        }
+
+       new Vue(options);
+       
+    </script> 
+</body>
+</html>

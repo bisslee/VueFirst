@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>    
+    <title>Biss teste</title>
+    <style>
+        .borda{
+            border:1px solid
+        }
+        
+    </style>
+</head>
+<body>
+    
+
+    <div id="app">
+      <ul>
+          <li v-for="(curso, key) in cursos" v-text="key +' - '+curso" ></li>
+      </ul>
+      <hr>
+      <table border="1">
+          <thead>
+              <tr>
+                  <td >ID</td>
+                  <td>Titulo</td>
+                  <td>Descricao</td>                 
+              </tr>
+          </thead>
+          <tbody>
+              <tr v-for="(curso, index) in cursosAvancados" :key="index" >
+                <td>{{index}}</td>
+                <td>{{curso.titulo}}</td>
+                <td>{{curso.descricao}}</td>                
+              </tr>
+          </tbody>
+      </table>
+      <hr>
+      <table border="1">
+          <thead>
+              <tr>
+                  <td >ID</td>
+                  <td>Titulo</td>
+                  <td>Descricao</td>
+                  <td>Valor</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr v-for="({titulo,descricao, valor}, index) in cursosAvancados" :key="index" >
+                <td>{{index}}</td>
+                <td>{{titulo}}</td>
+                <td>{{descricao}}</td>
+                <td>{{valor}}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+    <script>
+
+        options={
+            el:'#app',
+            data:{
+              cursos:[
+                  'Laravel', 'Web', 'Angular', 'sql', 'C#'
+              ],
+              cursosAvancados:{
+                1000:{
+                    titulo: 'Curso 1000',
+                    descricao: 'curso 1000',
+                    valor: 320,
+                    duracao: '80 horas'                },
+                1001:{
+                    titulo: 'Curso 1001',
+                    descricao: 'curso 1001',
+                    valor: 220,
+                    duracao: '80 horas'
+                },
+                1002:{
+                    titulo: 'Curso 1002',
+                    descricao: 'curso 1002',
+                    valor: 670,
+                    duracao: '80 horas'
+                },
+              }
+            },
+            methods: {
+                
+            },        
+        }
+
+       new Vue(options);
+       
+    </script> 
+</body>
+</html>
