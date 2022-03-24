@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>    
+    <title>Biss teste</title>
+    <style>
+        .bordaLista{
+            border:1px solid;
+            margin-bottom: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div id="app">
+      <ul>
+          <li v-for="c in comentarios">{{c.id}}-{{c.comentario}}</li>
+      </ul> 
+      <button @click="adicionarComentario">Adicionar  </button> 
+      <button @click="removerComentario">remove  </button> 
+      <button @click="atualizarComentario">atualizar  </button> 
+      <ul>
+          <li v-for="(curso, key) in cursos" v-text="key +' - '+curso" ></li>
+      </ul>
+      <hr>
+      <table >
+          <thead>
+              <tr>
+                  <td>ID</td>
+                  <td>Titulo</td>
+                  <td>Descricao</td>
+                  <td>Valor</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr v-for="({titulo,descricao, valor}, index) in cursosAvancados" :key="index" >
+                <td>{{index}}</td>
+                <td>{{titulo}}</td>
+                <td>{{descricao}}</td>
+                <td>{{valor}}</td>
+              </tr>
+          </tbody>
+      </table>
+      <hr>
+      <ul>
+          <li v-for="p in publicacoes" :key="p.id" class="bordaLista" >
+              <div>
+                 <b>{{p.publicacao}}   </b><br>
+                 {{p.resumo}}
+                 <hr>
+                 Comentários: <input type="text">
+                 
+              </div>
+          </li>
+      </ul>
+      <button @click="misturarLista()">Enviar</button>
+    </div>
+
+    <script>
+
+        options={
+            el:'#app',
+            data:{
+               
+                comentarios:[
+                    { id:1, comentario: 'lorem 1 ipsumipsumipsum ipsum 1'} ,
+                    { id:2, comentario: 'lorem ipsumipsum 2ipsum ipsum 2'} ,
+                    { id:3, comentario: 'lorem ipsumips 3umipsum ipsum 3'} ,
+                    { id:4, comentario: 'lorem ipsum 4ipsumipsum ipsum 4'} ,
+                    { id:5, comentario: 'lorem ipsum5ipsum5ipsum ipsum 5'} ,
+                ],
+                cursos:[
+                  'Laravel', 'Web', 'Angular', 'sql', 'C#'
+                ],
+                cursosAvancados:{
+                    1000:{
+                        titulo: 'Curso 1000',
+                        descricao: 'curso 1000',
+                        valor: 320,
+                        duracao: '80 horas'                },
+                    1001:{
+                        titulo: 'Curso 1001',
+                        descricao: 'curso 1001',
+                        valor: 220,
+                        duracao: '80 horas'
+                    },
+                    1002:{
+                        titulo: 'Curso 1002',
+                        descricao: 'curso 1002',
+                        valor: 670,
+                        duracao: '80 horas'
+                    }
+                },
+                publicacoes:[
+                    {id:1, publicacao: 'pub 01', resumo: 'lorem ipsumipsumipsum ipsum 1'} ,
+                    {id:2, publicacao: 'pub 02', resumo: 'lorem ipsum ipsumipsum 2'},
+                    {id:3, publicacao: 'pub 03', resumo: 'lorem ipsumipsum 3'},
+                    {id:4, publicacao: 'pub 04', resumo: 'lorem ipsum 4'},
+                    {id:5, publicacao: 'pub 05', resumo: 'lorem ipsum ipsum 5'},
+                ],
+               
+            },
+            methods: {
+                misturarLista(){
+                    let misturado=[]
+
+                    misturado[0]=this.publicacoes[2]
+                    misturado[1]=this.publicacoes[0]
+                    misturado[2]=this.publicacoes[4]
+                    misturado[3]=this.publicacoes[1]
+                    misturado[4]=this.publicacoes[3]
+                    this.publicacoes = misturado
+
+                },
+                adicionarComentario(){
+                    
+                    newtotal =  this.comentarios.length + 1
+                    this.comentarios.push({id:newtotal, comentario:'novo coment '+newtotal})
+                    console.log(this.comentarios.length)
+                    console.log(this.comentarios)
+                },
+                removerComentario(){
+                    
+                    this.comentarios.pop()
+                    console.log(this.comentarios.length)
+                    console.log(this.comentarios)
+                },
+                atualizarComentario(){
+                   
+                   alterado = {id:3, comentario:'Vai Corinthians'} 
+                   this.$set(this.comentarios, 2, alterado)
+                }
+                
+            },        
+        }
+
+       new Vue(options);
+       
+    </script> 
+</body>
+</html>

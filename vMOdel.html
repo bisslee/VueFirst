@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./vue.js"></script>    
+    <title>Biss teste</title>
+    <style>
+        .bordaLista{
+            border:1px solid;
+            margin-bottom: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Oie</h1>
+    <div id="app">
+        {{paciente}} <br><br>
+
+        <!--<input type="text" :value="paciente" @keyup="setPaciente($event)"></input>-->
+        <input type="text" v-model="paciente">
+        <hr>
+        <input type="radio" value="fem" v-model="sexo">Feminino
+        <input type="radio" value="mas" v-model="sexo">Masculino
+        <br>
+        {{sexo}}
+        <hr>
+        <select name="" id="" v-model="plano">
+            <option value="" disabled >Escolha um plano</option>
+            <option value="Basico" >Básico</option>
+            <option value="Ouro">Ouro</option>
+            <option value="Especial">Especial</option>
+        </select>    
+        <br>{{plano}}
+        <hr>
+        <input type="checkbox" value="100" v-model="doencas">Asma
+        <input type="checkbox" value="101" v-model="doencas">Diabetes tipo 1
+        <input type="checkbox" value="102" v-model="doencas">Rinite
+        <br>    {{doencas}}
+        <hr>
+        <textarea v-model="diagnostico" cols="30" rows="10"></textarea>
+        <br>
+        {{diagnostico}}
+    </div>
+    <script>
+
+        options={
+            el:'#app',
+            data:{
+                paciente: 'João Batista dos Santos',
+                sexo:'',
+                plano:'',
+                doencas:[],
+                diagnostico:''
+            },
+            methods: {
+                setPaciente(e){
+                    this.paciente = e.target.value
+                }
+
+            },
+            computed:{
+
+            },       
+        }
+
+       new Vue(options);
+       
+    </script> 
+</body>
+</html>
